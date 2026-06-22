@@ -134,6 +134,7 @@ export type TeamMember = {
   role: string;
   bio: string;
   initials: string;
+  image: string;
 };
 
 export const team: TeamMember[] = [
@@ -141,18 +142,21 @@ export const team: TeamMember[] = [
     name: "Dave Whitehead",
     role: "Founder & Lead Climber",
     initials: "DW",
+    image: "/dave.png",
     bio: "Founded the business in 2009 and brings over 20 years in the trade. There isn't a job Dave hasn't tackled, and he leads every project from the canopy down.",
   },
   {
-    name: "Liam Harper",
+    name: "JJ",
     role: "Senior Tree Surgeon",
-    initials: "LH",
-    bio: "Fast, precise and endlessly reliable on the ground crew. Liam keeps every site moving safely and leaves it spotless.",
+    initials: "JJ",
+    image: "/jj.png",
+    bio: "Fast, precise and endlessly reliable on the ground crew. JJ keeps every site moving safely and leaves it spotless.",
   },
   {
     name: "The Whitehead Team",
     role: "Ground Crew & Support",
     initials: "WT",
+    image: "/team.png",
     bio: "A close-knit, family-run crew built on honesty and integrity — the people who make sure every job is done properly and on time.",
   },
 ];

@@ -13,10 +13,17 @@ import { testimonials } from "@/lib/site";
 const AUTOPLAY_MS = 6500;
 
 const variants: Variants = {
-  enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? 40 : -40 }),
+  // New slide enters from the side you're heading toward; the old one keeps
+  // travelling off the opposite edge — no snap back to centre.
+  enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? "110%" : "-110%" }),
   center: { opacity: 1, x: 0 },
-  exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -40 : 40 }),
+  exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? "-110%" : "110%" }),
 };
+
+// A swipe must clear this combined distance*velocity threshold to register.
+const SWIPE_THRESHOLD = 8000;
+const swipePower = (offset: number, velocity: number) =>
+  Math.abs(offset) * velocity;
 
 export default function Testimonials() {
   const reduce = useReducedMotion();
@@ -59,7 +66,7 @@ export default function Testimonials() {
           playsInline
           preload="auto"
         >
-          <source src="/testimonials.mp4" type="video/mp4" />
+          <source src="/testimonials-dola.mp4" type="video/mp4" />
         </video>
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/75 to-ink/90" />
@@ -73,13 +80,8 @@ export default function Testimonials() {
           What our customers say
         </h2>
 
-        <div className="relative mt-10 min-h-[18rem] sm:min-h-[16rem]">
-          <Quote
-            className="mx-auto mb-6 text-accent/80"
-            size={40}
-            strokeWidth={1.5}
-          />
-          <AnimatePresence mode="wait" custom={dir}>
+        <div className="relative mt-10 min-h-104 overflow-hidden sm:min-h-80">
+          <AnimatePresence initial={false} custom={dir}>
             <motion.blockquote
               key={index}
               custom={dir}
@@ -87,8 +89,25 @@ export default function Testimonials() {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 32 },
+                opacity: { duration: 0.25 },
+              }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={1}
+              onDragEnd={(_, { offset, velocity }) => {
+                const power = swipePower(offset.x, velocity.x);
+                if (power < -SWIPE_THRESHOLD) paginate(1);
+                else if (power > SWIPE_THRESHOLD) paginate(-1);
+              }}
+              className="absolute inset-0 flex cursor-grab touch-pan-y select-none flex-col items-center justify-center active:cursor-grabbing"
             >
+              <Quote
+                className="mb-6 text-accent/80"
+                size={40}
+                strokeWidth={1.5}
+              />
               <div className="mb-5 flex justify-center gap-1">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
