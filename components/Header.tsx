@@ -26,13 +26,7 @@ export default function Header() {
   const solid = scrolled || open;
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        solid
-          ? "bg-background/60 shadow-[0_8px_30px_-12px_rgba(15,21,17,0.18)] backdrop-blur-xl backdrop-saturate-150"
-          : "bg-transparent"
-      }`}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 bg-background/60 shadow-[0_8px_30px_-12px_rgba(15,21,17,0.18)] backdrop-blur-xl backdrop-saturate-150 transition-all duration-300">
       <div
         className={`mx-auto flex w-full max-w-6xl items-center justify-between px-5 transition-[height] duration-300 sm:px-8 ${
           solid ? "h-22 sm:h-26" : "h-16 sm:h-20"
@@ -40,15 +34,9 @@ export default function Header() {
       >
         <a
           href="#top"
-          className={`flex items-center gap-2 font-display text-lg font-bold tracking-tight ${
-            solid ? "text-ink" : "text-white"
-          }`}
+          className="flex items-center gap-2 font-display text-lg font-bold tracking-tight text-ink"
         >
-          <TreePine
-            className={solid ? "text-accent" : "text-white"}
-            size={24}
-            strokeWidth={2}
-          />
+          <TreePine className="text-accent" size={24} strokeWidth={2} />
           <span>Whitehead Tree Care</span>
         </a>
 
@@ -57,9 +45,7 @@ export default function Header() {
             <a
               key={item.href}
               href={item.href}
-              className={`text-sm font-medium transition-colors hover:text-accent ${
-                solid ? "text-ink" : "text-white/90"
-              }`}
+              className="text-sm font-medium text-ink transition-colors hover:text-accent"
             >
               {item.label}
             </a>
@@ -76,7 +62,7 @@ export default function Header() {
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
-          className={`md:hidden ${solid ? "text-ink" : "text-white"}`}
+          className="text-ink md:hidden"
         >
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
