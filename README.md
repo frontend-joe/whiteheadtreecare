@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Whitehead Tree Care
 
-## Getting Started
+A modern marketing website for Whitehead Tree Care, built with **Next.js (App Router)**,
+**TypeScript**, **Tailwind CSS v4** and **Motion** (Framer Motion) for on-scroll animations.
 
-First, run the development server:
+## Features
+
+- Full-screen cinematic **video hero** with subtle parallax (clip from [mixkit.co](https://mixkit.co))
+- Smooth scroll-reveal animations throughout (respects `prefers-reduced-motion`)
+- Sections: Hero · Services · Why Us · About / service areas · Team · Get a Quote · Footer
+- Working **Get a Quote** form backed by [Resend](https://resend.com)
+- Minimal monochrome design with a bold green accent; fully responsive
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contact form (Resend)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy `.env.example` to `.env.local` and add your credentials:
 
-## Learn More
+```bash
+cp .env.example .env.local
+```
 
-To learn more about Next.js, take a look at the following resources:
+| Variable           | Purpose                                                        |
+| ------------------ | ------------------------------------------------------------- |
+| `RESEND_API_KEY`   | Resend API key. **If unset, the form runs in dev mode** and logs submissions to the server console instead of emailing. |
+| `QUOTE_TO_EMAIL`   | Where quote requests are delivered.                           |
+| `QUOTE_FROM_EMAIL` | A verified sender in your Resend account.                     |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Editing content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+All copy (services, team, areas, contact details) lives in [`lib/site.ts`](lib/site.ts).
+Swap the hero video by replacing [`public/hero.mp4`](public/hero.mp4).
 
-## Deploy on Vercel
+## Build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+```
