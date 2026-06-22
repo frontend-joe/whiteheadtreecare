@@ -33,7 +33,11 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:h-20 sm:px-8">
+      <div
+        className={`mx-auto flex w-full max-w-6xl items-center justify-between px-5 transition-[height] duration-300 sm:px-8 ${
+          solid ? "h-22 sm:h-26" : "h-16 sm:h-20"
+        }`}
+      >
         <a
           href="#top"
           className={`flex items-center gap-2 font-display text-lg font-bold tracking-tight ${
