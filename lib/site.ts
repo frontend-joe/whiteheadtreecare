@@ -98,6 +98,37 @@ export const serviceAreas = [
   "Lichfield",
 ];
 
+export type Testimonial = {
+  quote: string;
+  name: string;
+  location: string;
+  initials: string;
+};
+
+export const testimonials: Testimonial[] = [
+  {
+    quote:
+      "Dave and the team reduced two huge oaks overhanging our garden. Turned up on time, worked safely all day and left the place spotless. Genuinely the tidiest job we've ever had done.",
+    name: "Sarah Bennett",
+    location: "Solihull",
+    initials: "SB",
+  },
+  {
+    quote:
+      "We needed a storm-damaged tree felled quickly and safely next to the house. They handled the whole thing calmly and professionally, and the price was exactly what they quoted.",
+    name: "Mark Reynolds",
+    location: "Sutton Coldfield",
+    initials: "MR",
+  },
+  {
+    quote:
+      "Brilliant from the first message to the final sweep-up. Fully qualified, friendly, and clearly take real pride in their work. Wouldn't use anyone else for our trees now.",
+    name: "Priya Sharma",
+    location: "Coventry",
+    initials: "PS",
+  },
+];
+
 export type TeamMember = {
   name: string;
   role: string;
