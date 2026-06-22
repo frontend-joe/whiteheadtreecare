@@ -27,10 +27,10 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         solid
-          ? "border-b border-line bg-background/85 backdrop-blur-md"
-          : "border-b border-transparent bg-transparent"
+          ? "bg-background/60 shadow-[0_8px_30px_-12px_rgba(15,21,17,0.18)] backdrop-blur-xl backdrop-saturate-150"
+          : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:h-20 sm:px-8">
@@ -80,7 +80,7 @@ export default function Header() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-t border-line bg-background md:hidden">
+        <div className="bg-background/70 backdrop-blur-xl backdrop-saturate-150 md:hidden">
           <nav className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-5 py-4">
             {nav.map((item) => (
               <a
