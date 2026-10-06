@@ -1,4 +1,4 @@
-import { TreePine, Phone, Mail } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 import { InstagramIcon, FacebookIcon } from "./ui/icons";
 import { site, nav } from "@/lib/site";
 
@@ -10,9 +10,13 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <a
               href="#top"
-              className="flex items-center gap-2 font-display text-lg font-bold text-white"
+              className="flex items-center gap-2.5 font-display text-lg font-bold text-white"
             >
-              <TreePine size={24} className="text-accent" />
+              <img
+                src="/logo.svg"
+                alt="Whitehead Tree Care logo"
+                className="h-8 w-auto rounded"
+              />
               {site.name}
             </a>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/60">

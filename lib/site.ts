@@ -20,7 +20,7 @@ export const site = {
   email: "dave@whiteheadtreecare.com",
   location: "Birmingham, United Kingdom",
   instagram: "https://www.instagram.com/whiteheadtreecare/",
-  facebook: "https://www.facebook.com/",
+  facebook: "https://www.facebook.com/whiteheadtreecare/?locale=en_GB",
   foundedYear: 2009,
 };
 

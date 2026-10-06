@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, X, TreePine, Phone } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { nav, site } from "@/lib/site";
 
 export default function Header() {
@@ -34,9 +34,13 @@ export default function Header() {
       >
         <a
           href="#top"
-          className="flex items-center gap-2 font-display text-lg font-bold tracking-tight text-ink"
+          className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight text-ink"
         >
-          <TreePine className="text-accent" size={24} strokeWidth={2} />
+          <img
+            src="/logo.svg"
+            alt="Whitehead Tree Care logo"
+            className="h-8 w-auto rounded"
+          />
           <span>Whitehead Tree Care</span>
         </a>
 
