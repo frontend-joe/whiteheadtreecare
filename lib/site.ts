@@ -42,7 +42,7 @@ export const services: Service[] = [
     icon: TreePine,
     title: "Tree Surgery",
     description:
-      "Crown reduction, thinning, pruning and deadwooding carried out to industry standard. Over 20 years of experience keeping trees healthy, safe and beautifully shaped.",
+      "Crown reduction, thinning, pruning and deadwooding carried out to industry standard. Over 15 years of experience keeping trees healthy, safe and beautifully shaped.",
   },
   {
     icon: Axe,
@@ -143,7 +143,7 @@ export const team: TeamMember[] = [
     role: "Founder & Lead Climber",
     initials: "DW",
     image: "/dave.png",
-    bio: "Founded the business in 2009 and brings over 20 years in the trade. There isn't a job Dave hasn't tackled, and he leads every project from the canopy down.",
+    bio: "Founded the business in 2009 and brings over 15 years in the trade. There isn't a job Dave hasn't tackled, and he leads every project from the canopy down.",
   },
   {
     name: "JJ",

@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+# Official Next.js runtime — turns the App Router + /api routes into
+# Netlify functions automatically. Netlify also auto-detects this; pinning
+# it here keeps the config in version control.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

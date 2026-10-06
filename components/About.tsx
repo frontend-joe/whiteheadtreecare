@@ -5,7 +5,7 @@ import { site, serviceAreas } from "@/lib/site";
 
 const points = [
   "Family-run, built on honesty and integrity",
-  "Over 20 years of hands-on experience",
+  "Over 15 years of hands-on experience",
   "Covering the Midlands within ~50 miles",
 ];
 

@@ -1,7 +1,12 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "motion/react";
 import { Phone, ArrowRight, ChevronDown } from "lucide-react";
 import { site } from "@/lib/site";
 
@@ -34,7 +39,7 @@ export default function Hero() {
           playsInline
           preload="auto"
         >
-          <source src="/hero-dola.mp4" type="video/mp4" />
+          <source src="/hero.mp4" type="video/mp4" />
         </video>
       </motion.div>
 
@@ -72,8 +77,8 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 max-w-xl text-lg leading-relaxed text-white/85 sm:text-xl"
         >
-          Professional, fully qualified tree surgery, felling and stump removal —
-          carried out safely, tidily and with over 20 years of experience.
+          Professional, fully qualified tree surgery, felling and stump removal
+          — carried out safely, tidily and with over 15 years of experience.
         </motion.p>
 
         <motion.div
