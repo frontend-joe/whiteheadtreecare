@@ -38,21 +38,32 @@ export default function Contact() {
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
 
+    const fallback =
+      "We couldn't send your message. Please call or email us directly and we'll get right back to you.";
+
     try {
       const res = await fetch("/api/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body.error || "Something went wrong. Please try again.");
+      const body: { ok?: boolean; error?: string } = await res
+        .json()
+        .catch(() => ({}));
+
+      // Only treat it as sent when the server explicitly confirms it.
+      if (!res.ok || !body.ok) {
+        throw new Error(body.error || fallback);
       }
+
       setStatus("success");
       form.reset();
     } catch (err) {
       setStatus("error");
-      setError(err instanceof Error ? err.message : "Something went wrong.");
+      const message = err instanceof Error ? err.message : "";
+      // Network/offline errors surface as unfriendly strings — tidy them up.
+      const networky = /failed to fetch|load failed|networkerror/i.test(message);
+      setError(!message || networky ? fallback : message);
     }
   }
 
@@ -166,9 +177,25 @@ export default function Contact() {
                 </div>
 
                 {status === "error" && (
-                  <p className="flex items-center gap-2 text-sm text-red-600">
-                    <AlertCircle size={16} /> {error}
-                  </p>
+                  <div
+                    role="alert"
+                    className="flex items-start gap-2.5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                  >
+                    <AlertCircle size={18} className="mt-0.5 shrink-0" />
+                    <span>
+                      {error}{" "}
+                      <a href={site.phoneHref} className="font-semibold underline">
+                        {site.phone}
+                      </a>{" "}
+                      ·{" "}
+                      <a
+                        href={`mailto:${site.email}`}
+                        className="font-semibold underline"
+                      >
+                        {site.email}
+                      </a>
+                    </span>
+                  </div>
                 )}
 
                 <button

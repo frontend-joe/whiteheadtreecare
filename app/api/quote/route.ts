@@ -47,13 +47,24 @@ export async function POST(req: Request) {
   const to = process.env.QUOTE_TO_EMAIL || site.email;
   const from = process.env.QUOTE_FROM_EMAIL || "onboarding@resend.dev";
 
-  // Allow local development without credentials: log instead of sending.
   if (!apiKey) {
-    console.warn(
-      "[quote] RESEND_API_KEY not set — logging submission instead of emailing.",
-      { name, email, phone, message },
+    // In local dev, log instead of sending so the form is testable.
+    if (process.env.NODE_ENV === "development") {
+      console.warn(
+        "[quote] RESEND_API_KEY not set — logging submission instead of emailing.",
+        { name, email, phone, message },
+      );
+      return NextResponse.json({ ok: true, simulated: true });
+    }
+    // In production a missing key is a real failure — never fake success.
+    console.error("[quote] RESEND_API_KEY is not set in this environment.");
+    return NextResponse.json(
+      {
+        error:
+          "Sorry, our contact form is temporarily unavailable. Please call or email us directly.",
+      },
+      { status: 503 },
     );
-    return NextResponse.json({ ok: true, simulated: true });
   }
 
   try {
