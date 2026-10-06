@@ -19,7 +19,7 @@ export const site = {
   whatsappHref: "https://wa.me/447429258819",
   email: "dave@whiteheadtreecare.com",
   location: "Birmingham, United Kingdom",
-  instagram: "https://www.instagram.com/",
+  instagram: "https://www.instagram.com/whiteheadtreecare/",
   facebook: "https://www.facebook.com/",
   foundedYear: 2009,
 };
