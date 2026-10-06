@@ -39,7 +39,7 @@ export default function Hero() {
           playsInline
           preload="auto"
         >
-          <source src="/hero.mp4" type="video/mp4" />
+          <source src="/hero-dola.mp4" type="video/mp4" />
         </video>
       </motion.div>
 
