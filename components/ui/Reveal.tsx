@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type Variants } from "motion/react";
+import { motion, useReducedMotion, type Variants } from "motion/react";
 import type { ReactNode } from "react";
 
 type RevealProps = {
@@ -8,21 +8,23 @@ type RevealProps = {
   className?: string;
   /** Stagger delay in seconds for items within a group. */
   delay?: number;
-  /** Direction the element travels in from. */
+  /** Distance (px) the element travels in from. */
   y?: number;
   as?: "div" | "li" | "span" | "section";
 };
 
+type Custom = { delay: number; y: number; reduce: boolean };
+
 const variants: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (custom: { delay: number; y: number }) => ({
+  // Reduced motion → cross-fade only, no vestibular travel (Apple §14).
+  hidden: ({ y, reduce }: Custom) => ({ opacity: 0, y: reduce ? 0 : y }),
+  visible: ({ delay, reduce }: Custom) => ({
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.6,
-      delay: custom.delay,
-      ease: [0.22, 1, 0.36, 1],
-    },
+    transition: reduce
+      ? { duration: 0.3, delay }
+      : // Critically damped spring — settles gracefully, no distracting overshoot (§4).
+        { type: "spring", bounce: 0, duration: 0.6, delay },
   }),
 };
 
@@ -33,12 +35,13 @@ export default function Reveal({
   y = 24,
   as = "div",
 }: RevealProps) {
+  const reduce = useReducedMotion() ?? false;
   const MotionTag = motion[as];
   return (
     <MotionTag
       className={className}
       variants={variants}
-      custom={{ delay, y }}
+      custom={{ delay, y, reduce }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}

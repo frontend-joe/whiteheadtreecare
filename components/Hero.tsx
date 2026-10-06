@@ -44,7 +44,7 @@ export default function Hero() {
       </motion.div>
 
       {/* Overlays for contrast */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/45 to-black/80" />
+      <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/45 to-black/80" />
       <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_0%,transparent_40%,rgba(0,0,0,0.45)_100%)]" />
 
       {/* Content */}
@@ -89,7 +89,7 @@ export default function Hero() {
         >
           <a
             href="#contact"
-            className="group inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-black/20 transition-colors hover:bg-accent-dark"
+            className="group inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-black/20 transition duration-150 hover:bg-accent-dark active:scale-[0.98]"
           >
             Get a free quote
             <ArrowRight
@@ -99,7 +99,7 @@ export default function Hero() {
           </a>
           <a
             href={site.phoneHref}
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/15"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition duration-150 hover:bg-white/15 active:scale-[0.98]"
           >
             <Phone size={18} />
             {site.phone}

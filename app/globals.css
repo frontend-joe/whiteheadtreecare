@@ -15,8 +15,8 @@
   --color-accent-dark: #155c39;
   --color-accent-soft: #e9f4ee;
 
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-display);
+  --font-sans: var(--font-geist);
+  --font-display: var(--font-geist);
 
   --radius-card: 1.25rem;
 }
@@ -34,6 +34,41 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  /* Let Geist pick the right optical cut per size (Apple §15). */
+  font-optical-sizing: auto;
+  text-rendering: optimizeLegibility;
+}
+
+/* Large display text reads too loose as it grows — tighten the tracking by
+   default (Apple §15). In @layer base so explicit tracking-* utilities still
+   win; body text stays near 0. */
+@layer base {
+  .font-display {
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Translucent chrome as a single material layer (Apple §12). Content
+   scrolls underneath; accessibility prefs make it frostier/solid (§14). */
+.frost {
+  background: color-mix(in srgb, var(--color-background) 60%, transparent);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .frost {
+    background: var(--color-background);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .frost {
+    background: var(--color-background);
+    border-bottom: 1px solid var(--color-line);
+  }
 }
 
 ::selection {

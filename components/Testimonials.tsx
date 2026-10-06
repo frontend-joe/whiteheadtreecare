@@ -69,7 +69,7 @@ export default function Testimonials() {
           <source src="/testimonials-dola.mp4" type="video/mp4" />
         </video>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/75 to-ink/90" />
+      <div className="absolute inset-0 bg-linear-to-b from-ink/85 via-ink/75 to-ink/90" />
 
       {/* Content */}
       <div className="relative z-10 mx-auto w-full max-w-3xl px-5 text-center sm:px-8">
@@ -143,7 +143,7 @@ export default function Testimonials() {
             type="button"
             aria-label="Previous testimonial"
             onClick={() => paginate(-1)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-white transition-colors hover:bg-white/10"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-white transition duration-150 hover:bg-white/10 active:scale-90"
           >
             <ChevronLeft size={20} />
           </button>
@@ -167,7 +167,7 @@ export default function Testimonials() {
             type="button"
             aria-label="Next testimonial"
             onClick={() => paginate(1)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-white transition-colors hover:bg-white/10"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-white transition duration-150 hover:bg-white/10 active:scale-90"
           >
             <ChevronRight size={20} />
           </button>

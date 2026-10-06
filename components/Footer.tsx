@@ -15,7 +15,7 @@ export default function Footer() {
               <img
                 src="/logo.svg"
                 alt="Whitehead Tree Care logo"
-                className="h-8 w-auto rounded"
+                className="h-6 w-auto rounded"
               />
               {site.name}
             </a>

@@ -201,7 +201,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-accent-dark disabled:opacity-70"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 text-base font-semibold text-white transition duration-150 hover:bg-accent-dark active:scale-[0.99] disabled:opacity-70 disabled:active:scale-100"
                 >
                   {status === "loading" ? (
                     <>
